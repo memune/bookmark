@@ -4,7 +4,9 @@ from django.urls import reverse
 # Create your models here.
 class Bookmark(models.Model):
     site_name = models.CharField(max_length=100)
+    description = models.TextField(max_length=500)
     url = models.URLField('Site URL')
+    votes = models.IntegerField(default=0)
 
     def __str__(self):
         return "이름 : "+self.site_name + ", 주소 : "+self.url

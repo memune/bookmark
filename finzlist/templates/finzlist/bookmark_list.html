@@ -7,9 +7,9 @@ Bookmark List
 
 {% block content %}
 
-    <div class="btn-group">
+    {% comment %} <div class="btn-group">
         <a href="{% url 'add' %}" class="btn btn-info">Add List</a>
-    </div>
+    </div> {% endcomment %}
 
     <p></p>
 
@@ -17,22 +17,35 @@ Bookmark List
         
         <thead>
             <tr>
-                <th scope="col">#</th>
+                {% comment %} <th scope="col">#</th> {% endcomment %}
                 <th scope="col">Site</th>
+                <th scope="cok">Description</th>
                 <th scope="col">URL</th>
                 <th scope="col">Modify</th>
                 <th scope="col">Delete</th>
+                <th scope="co,">Vote</th>
             </tr>
         </thead>
 
         <tbody>
             {% for list in object_list %}
                 <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td><a href="{% url 'detail' pk=list.id %}">{{ list.site_name }}</a></td>
+                    {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
+                    <td><a href="{% url 'bookmark:detail' pk=list.id %}">{{ list.site_name }}</a></td>
+                    <td>{{ list.description }}</td>
                     <td><a href="{{ list.url }}" target="_blank">{{ list.url }}</a></td>
-                    <td><a href="{% url 'update' pk=list.id %}" class="btn btn-success btn-sm">Modify</a></td>
-                    <td><a href="{% url 'delete' pk=list.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                    <td><a href="{% url 'bookmark:update' pk=list.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                    <td><a href="{% url 'bookmark:delete' pk=list.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                    
+                    <td>
+                    <form action="{% url 'bookmark:vote' pk=list.id %}" method="post">
+                    
+                        {% csrf_token %}
+                        {{ list.votes }}
+                        <input type="submit" value="Vote">
+
+                    </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -41,8 +54,22 @@ Bookmark List
 
 {% endblock %}
 
+{% comment %} 
+    
+    
+        {% csrf_token %}
 
-{% block pagination %}
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{choice.id}}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        {% endfor %}
+
+        <input type="submit" value="Vote">
+
+    </form> {% endcomment %}
+
+    
+{% comment %} {% block pagination %}
     {% if is_paginated %}
         <ul class="pagination justify-content-center pagination-sm">
             {% if page_obj.has_previous %}
@@ -73,4 +100,4 @@ Bookmark List
             {% endif %}
         </ul>
     {% endif %} 
-{% endblock %}           
+{% endblock %}            {% endcomment %}
