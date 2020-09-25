@@ -13,6 +13,8 @@
     gtag('config', 'UA-179009111-1');
     </script>
 
+
+    {% load static %}
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
 
@@ -20,7 +22,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="그린북(GreenBook)">
     <meta property="og:description" content="해외 주식 투자자들의 비밀 북마크">
-    <meta property="og:image" content="static_files/images/greenbook_og_image.png">
+    <meta property="og:image" content="{% static 'greenbook_og_image.png' %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:heigth" content="627">
     
@@ -31,7 +33,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500;600&display=swap" rel="stylesheet">
 
-    {% load static %}
+    
     <link rel="stylesheet" href="{% static 'style.css' %}">
 
 </head>
