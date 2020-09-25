@@ -17,6 +17,9 @@ class BookmarkListView(ListView):
     # def get_queryset(self):
     #     return Bookmark.objects.order_by('-votes')
 
+    def get_queryset(self):
+        return Bookmark.objects.order_by('-votes')
+
 class BookmarkCreateView(CreateView):
     model = Bookmark
     fields = ['site_name', 'description', 'url']

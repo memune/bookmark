@@ -22,6 +22,9 @@ class Bookmark(models.Model):
     def get_absolute_url(self):
         return reverse("detail", args=[str(self.id)])
 
+    def get_queryset(self):
+        return Bookmark.objects.order_by('-votes')
+
 
 
 

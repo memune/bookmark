@@ -18,18 +18,29 @@ Green Book - 해외 주식투자 정보 북마크
         <thead>
             <tr>
                 {% comment %} <th scope="col">#</th> {% endcomment %}
+                <th scope="col" class="vote-th">추천</th>
                 <th scope="col" class="name-th">이름</th>
                 <th scope="col" class="description-th">어떤 곳인가요?</th>
                 <th scope="col" class="category-th">카테고리</th>
                 {% comment %} <th scope="col">수정</th>
                 <th scope="col">삭제</th> {% endcomment %}
-                <th scope="col" class="vote-th">추천</th>
+                
             </tr>
         </thead>
 
         <tbody>
             {% for list in object_list %}
                 <tr>
+
+                    <td class="vote-td">
+                    <form action="{% url 'bookmark:vote' pk=list.id %}" method="post" >
+                    
+                        {% csrf_token %}
+                        
+                        <input type="submit" value="👍 {{ list.votes }}" class="btn btn-light vote-btn">
+
+                    </form>
+                    </td>
                     {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
                     <td class="name-td"><a href="{{ list.url }}" target="_blank">{{ list.site_name }}</a></td>
                     <td>{{ list.description|linebreaks }}</td> 
@@ -41,15 +52,7 @@ Green Book - 해외 주식투자 정보 북마크
 
                     <td class="category-td">{% for each_category in list.category.all %}<span class="badge badge-pill badge-warning">{{ each_category }}</span>{% endfor %}</td>
 
-                    <td class="vote-td">
-                    <form action="{% url 'bookmark:vote' pk=list.id %}" method="post" >
                     
-                        {% csrf_token %}
-                        
-                        <input type="submit" value="👍 {{ list.votes }}" class="btn btn-light vote-btn">
-
-                    </form>
-                    </td>
 
                 </tr>
             {% endfor %}
