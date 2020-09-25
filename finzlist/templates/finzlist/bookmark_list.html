@@ -2,7 +2,7 @@
 
 
 {% block title %}
-Bookmark List
+Green Book - 해외 주식투자 정보 북마크
 {% endblock %}
 
 {% block content %}
@@ -11,19 +11,19 @@ Bookmark List
         <a href="{% url 'add' %}" class="btn btn-info">Add List</a>
     </div> {% endcomment %}
 
-    <p></p>
+    <br><br>
 
     <table class="table">
         
         <thead>
             <tr>
                 {% comment %} <th scope="col">#</th> {% endcomment %}
-                <th scope="col">Site</th>
-                <th scope="cok">Description</th>
-                <th scope="col">URL</th>
-                <th scope="col">Modify</th>
-                <th scope="col">Delete</th>
-                <th scope="co,">Vote</th>
+                <th scope="col" class="name-th">이름</th>
+                <th scope="col" class="description-th">어떤 곳인가요?</th>
+                <th scope="col" class="category-th">카테고리</th>
+                {% comment %} <th scope="col">수정</th>
+                <th scope="col">삭제</th> {% endcomment %}
+                <th scope="col" class="vote-th">추천</th>
             </tr>
         </thead>
 
@@ -31,21 +31,26 @@ Bookmark List
             {% for list in object_list %}
                 <tr>
                     {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
-                    <td><a href="{% url 'bookmark:detail' pk=list.id %}">{{ list.site_name }}</a></td>
-                    <td>{{ list.description }}</td>
-                    <td><a href="{{ list.url }}" target="_blank">{{ list.url }}</a></td>
-                    <td><a href="{% url 'bookmark:update' pk=list.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                    <td class="name-td"><a href="{{ list.url }}" target="_blank">{{ list.site_name }}</a></td>
+                    <td>{{ list.description|linebreaks }}</td> 
+
+                    {% comment %} 수정, 삭제 기능은 추후 관리자 단에서만 노출되도록 설정 예정 {% endcomment %}
+                    {% comment %} <td><a href="{% url 'bookmark:update' pk=list.id %}" class="btn btn-success btn-sm">Modify</a></td>
                     <td><a href="{% url 'bookmark:delete' pk=list.id %}" class="btn btn-danger btn-sm">Delete</a></td>
-                    
-                    <td>
-                    <form action="{% url 'bookmark:vote' pk=list.id %}" method="post">
+                     {% endcomment %}
+
+                    <td class="category-td">{% for each_category in list.category.all %}<span class="badge badge-pill badge-warning">{{ each_category }}</span>{% endfor %}</td>
+
+                    <td class="vote-td">
+                    <form action="{% url 'bookmark:vote' pk=list.id %}" method="post" >
                     
                         {% csrf_token %}
-                        {{ list.votes }}
-                        <input type="submit" value="Vote">
+                        
+                        <input type="submit" value="👍 {{ list.votes }}" class="btn btn-light vote-btn">
 
                     </form>
                     </td>
+
                 </tr>
             {% endfor %}
         </tbody>

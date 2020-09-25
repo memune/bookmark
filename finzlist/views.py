@@ -6,7 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 
 
-from .models import Bookmark
+from .models import Bookmark, Category
 
 class BookmarkListView(ListView):
     model = Bookmark
