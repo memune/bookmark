@@ -22,8 +22,8 @@ class BookmarkListView(ListView):
 
 class BookmarkCreateView(CreateView):
     model = Bookmark
-    fields = ['site_name', 'description', 'url']
-    success_url = reverse_lazy('list')
+    fields = ['site_name', 'description', 'url', 'category']
+    success_url = reverse_lazy('bookmark:list')
     template_name_suffix = '_create'
 
 class BookmarkDetailView(DetailView):
@@ -31,12 +31,12 @@ class BookmarkDetailView(DetailView):
 
 class BookmarkUpdateView(UpdateView):
     model = Bookmark
-    fields = ['site_name', 'description', 'url']
+    fields = ['site_name', 'description', 'url', 'category']
     template_name_suffix = '_update'
 
 class BookmarkDeleteView(DeleteView):
     model = Bookmark
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('bookmark:list')
 
 
 def vote(request, pk):

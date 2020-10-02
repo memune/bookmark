@@ -74,3 +74,20 @@ a:active {
 .vote-btn {
     width: 80px;
 }
+
+.modify-th {
+    text-align: center; 
+}
+
+.delete-th {
+    text-align: center; 
+}
+
+.login {
+    padding-top: 20px;
+}
+
+.add {
+    text-align: right;
+    padding-bottom: 10px;
+}

@@ -41,10 +41,28 @@
 <body>
 
     <div class="container">
-            <div class="navbar-brand head-title">Green Book 💸</div><br>
-            <div class="sub-title">: 해외 주식 투자자들의 비밀 북마크</div>
-            
-            
+        <div class="row">
+                <div class="head-title col-11"><a href="{% url 'bookmark:list' %}">Green Book 💸</a>
+                <div class="sub-title">해외 주식 투자자들의 비밀 북마크</div>
+                </div>
+                
+                <div class="login col-1">
+                    {% block login %}
+                    {% if user.is_authenticated %}
+                    <div class="logout"><a href="{% url 'logout' %}">Logout</a></div>
+                    {% else %}
+                    <div class="login"><a href="{% url 'login'%}">Login</a></div>
+                    {% endif %}
+                    {% endblock %}
+                </div>            
+
+                <div class="row">
+                
+                </div>
+        </div>
+       
+
+
             {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button> {% endcomment %}
@@ -56,7 +74,6 @@
                     </li>
                 </ul>
             </div> {% endcomment %}
-        </nav>
         <p></p>
         <div class="row">
             <div class="col">

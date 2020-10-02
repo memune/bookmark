@@ -4,7 +4,23 @@
 Bookmark Add
 {% endblock %}
 
+
+
+
+{% block login %}
+
+    {% if user.is_authenticated %}
+    
+    {% else %}
+        
+    {% endif %}
+{% endblock %}
+
+
+
 {% block content %}
+
+    <br><br>
 
     <form action="" method="post">
         {% csrf_token %}

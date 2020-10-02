@@ -4,6 +4,17 @@
 
 {% block content %}
 
+{% block login %}
+
+    {% if user.is_authenticated %}
+    
+    {% else %}
+        
+    {% endif %}
+{% endblock %}
+
+<br><br>
+
 <form action="" method="post">
     {% csrf_token %}
     <div class="alert alert-danger">Do you want to delete Bookmark "{{ object.site_name }}"?</div>

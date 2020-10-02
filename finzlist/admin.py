@@ -4,5 +4,9 @@ from django.contrib import admin
 
 from .models import Bookmark, Category
 
-admin.site.register(Bookmark)
+
+class BookmarkAdmin(admin.ModelAdmin):
+    list_display = ['site_name', 'author', 'created', 'updated']
+
+admin.site.register(Bookmark, BookmarkAdmin)
 admin.site.register(Category)

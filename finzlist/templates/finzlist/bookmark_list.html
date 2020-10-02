@@ -12,7 +12,14 @@ Green Book - 해외 주식투자 정보 북마크
     </div> {% endcomment %}
 
     <br><br>
-
+    
+    <div class="row">
+        <div class="col-sm-2 offset-sm-10 add">
+        {% if user.is_authenticated %}
+        <a href="{% url "bookmark:add" %}">Add Bookmark</a>
+        {% endif %}
+        </div>
+    </div>
     <table class="table">
         
         <thead>
@@ -22,9 +29,12 @@ Green Book - 해외 주식투자 정보 북마크
                 <th scope="col" class="name-th">이름</th>
                 <th scope="col" class="description-th">어떤 곳인가요?</th>
                 <th scope="col" class="category-th">카테고리</th>
-                {% comment %} <th scope="col">수정</th>
-                <th scope="col">삭제</th> {% endcomment %}
-                
+
+                {% if user.is_authenticated %}
+                    <th scope="col" class="modify-th">수정</th>
+                    <th scope="col" class="delete-th">삭제</th>
+                {% else %}
+                {% endif %}
             </tr>
         </thead>
 
@@ -44,15 +54,13 @@ Green Book - 해외 주식투자 정보 북마크
                     {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
                     <td class="name-td"><a href="{{ list.url }}" target="_blank">{{ list.site_name }}</a></td>
                     <td>{{ list.description|linebreaks }}</td> 
-
-                    {% comment %} 수정, 삭제 기능은 추후 관리자 단에서만 노출되도록 설정 예정 {% endcomment %}
-                    {% comment %} <td><a href="{% url 'bookmark:update' pk=list.id %}" class="btn btn-success btn-sm">Modify</a></td>
-                    <td><a href="{% url 'bookmark:delete' pk=list.id %}" class="btn btn-danger btn-sm">Delete</a></td>
-                     {% endcomment %}
-
                     <td class="category-td">{% for each_category in list.category.all %}<span class="badge badge-pill badge-warning">{{ each_category }}</span>{% endfor %}</td>
 
-                    
+                    {% if user.is_authenticated %}
+                    <td><a href="{% url 'bookmark:update' pk=list.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                    <td><a href="{% url 'bookmark:delete' pk=list.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                    {% else %}
+                    {% endif %}
 
                 </tr>
             {% endfor %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome, Login{% endblock %}
+
+
+{% block login %}
+
+    {% if user.is_authenticated %}
+    
+    {% else %}
+        
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<br><br>
+<div class="row">
+    
+    <div class="col panel panel-default">
+        <div class="alert alert-info">관리자만 로그인할 수 있어요.</div>
+
+        <form action="" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="로그인">
+        </form>
+    </div>
+    
+</div>
+
+{% endblock %}
+

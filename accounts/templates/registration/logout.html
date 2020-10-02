@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+
+
+{% block login %}
+
+    {% if user.is_authenticated %}
+    
+    {% else %}
+        
+    {% endif %}
+{% endblock %}
+
+<br><br>
+
+<div class="row">
+    
+    <div class="col panel panel-default">
+        <div class="alert alert-info">안녕 잘가! 수고했어요.</div>
+
+        <a class ="btn btn-primary" href="{% url 'login' %}">다시 로그인</a>
+    </div>
+
+</div>
+
+{% endblock %}
+
