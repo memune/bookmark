@@ -27,7 +27,7 @@ class Bookmark(models.Model):
         return self.site_name 
 
     def get_absolute_url(self):
-        return reverse("detail", args=[str(self.id)])
+        return reverse("bookmark:detail", args=[str(self.id)])
 
     
 
