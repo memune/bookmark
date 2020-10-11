@@ -1,0 +1,93 @@
+body {
+    width:100%;
+    font-family: 'Source Code Pro', monospace;
+}
+
+a:link {
+    color: #024c46;
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+a:visited {
+    color: #024c46 ;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+a:hover {
+    color:#D4AF37 ;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+a:active {
+    color: #438029;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
+.head-title { 
+    color: #024c46 !important;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 30px !important;
+    padding-top: 20px;
+}
+
+.sub-title { 
+    color: #48494b !important;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 15px !important;
+}
+
+.name-th {
+    min-width: 150px;
+}
+
+.name-td {
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 600;
+}
+
+.description-th{
+
+}
+
+.category-th {
+    min-width: 100px;
+    text-align: center;
+}
+
+.category-td {
+    text-align: center;
+}
+
+.vote-th {
+    min-width: 100px;
+    text-align: center;
+}
+
+.vote-td {
+    text-align: center;
+}
+
+.vote-btn {
+    width: 80px;
+}
+
+.modify-th {
+    text-align: center; 
+}
+
+.delete-th {
+    text-align: center; 
+}
+
+.login {
+    padding-top: 20px;
+}
+
+.add {
+    text-align: right;
+    padding-bottom: 10px;
+}
